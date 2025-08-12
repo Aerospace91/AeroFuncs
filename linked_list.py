@@ -1,5 +1,3 @@
-from typing import Optional, Any
-
 class Node:
     def __init__(self, val):
         self.val = val
@@ -16,13 +14,15 @@ class LinkedList:
         self.head = None
         self.tail = None
         
-    def add_to_head(self, node):
+    def add_to_head(self, val):
+        node = Node(val)
         if self.head is None:
             self.tail = node
         node.set_next(self.head)
         self.head = node
 
-    def add_to_tail(self, node):
+    def add_to_tail(self, val):
+        node = Node(val)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -40,6 +40,12 @@ class LinkedList:
         nodes = []
         current = self.head
         while current and hasattr(current, "val"):
-            nodes.append(current.val)
+            nodes.append(str(current.val))
             current = current.next
         return " -> ".join(nodes)
+    
+linked_list = LinkedList()
+linked_list.add_to_head(5)
+linked_list.add_to_head(10)
+linked_list.add_to_head(20)
+print(linked_list)
