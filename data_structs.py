@@ -1,4 +1,5 @@
 from typing import Any, Optional
+from collections import deque
 
 class Stack:
     """A simple stack (Last-In, First-Out) data structure"""
@@ -58,7 +59,7 @@ class Stack:
 class Queue:
     def __init__(self) -> None:
         """Initialize an empty queue."""
-        self.items = []
+        self.items = deque()
     
     def push(self, item: Any) -> None:
         """
@@ -74,7 +75,7 @@ class Queue:
             >>> s.peek()
             10
         """
-        self.items.insert(0, item)
+        self.items.append(item)
     
     def pop(self) -> Optional[Any]:
         """
@@ -83,11 +84,9 @@ class Queue:
         Returns:
             Any or None: The removed item, or None if the queue is empty.
         """
-        if len(self.items) == 0:
+        if not self.items:
             return None
-        temp = self.items[-1]
-        del self.items[-1]
-        return temp
+        return self.items.popleft()
     
     def peek(self) -> Optional[Any]:
         """
